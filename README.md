@@ -116,8 +116,47 @@ Untuk menerapkan clean architecture pada aplikasi Flutter, berikut adalah langka
 6. Implementasikan lapisan presentasi, yang berisi widget, state, dan bloc.
 7. Tambahkan fitur CRUD untuk item toko
 
-# Cara Saya Mengimplementasi _Checklist_
+# Cara Saya Mengimplementasikan _Checklist_ Tugas ini
+### Tahap menambahkan Drawer Menu untuk Navigasi Halaman
+1. Membuat direktori baru bernama `widgets` di `tropische/lib` dan mengisinya dengan file `left_drawer.dart`.
+2. Mengisi file `left_drawer.dart` dengan Widget build yang di dalamnya ada _drawer header_, _routing_. Selain itu, mengimport `flutter/material.dart`, `tropische/menu.dart`, dan `tropische/screens/shoplist_form.dart`.
 
+### Tahap menambahkan Form dan Elemen Input
+1. Membuat file baru, yaitu `shoplist_form.dart` dan mengimport drawer yang telah dibuat sebelumnya, dengan cara `import 'package:tropische/widgets/left_drawer.dart'`
+2. Menambahkan `class ShopFormPage extends StatefulWidget` dan `class _ShopFormPageState extends State<ShopFormPage>`
+3. Mengubah widget Placeholder dan menambahkan drawer, seperti berikut: 
+```Scaffold(
+  appBar: AppBar(
+    title: const Center(
+      child: Text(
+        'Form Tambah Produk',
+      ),
+    ),
+    backgroundColor: Colors.indigo,
+    foregroundColor: Colors.white,
+  ),
+  // [kode drawer disini] 
+  body: Form(
+    child: SingleChildScrollView(),
+  ),
+);
+```
+4. Membuat handler dari form state, validasi form, dan penyimpanan form dengan membuat variabel baru `_formKey` dan menambahkannya ke atribut `key` milik widget `Form`.
+5. Mengisi widget `Form` dengan _field_, antara lain ada nama, harga, deskripsi, jenis, dan jumlah pada tugas ini.
+6. Setelah membuat _field_ tersebut, buat widget `Column` sebagai child dari `SingleChildScrollView`.
+7. Selanjutnya, membuat widget `TextFormField` yang dibungkus Padding sebagai salah satu widget `Column` untuk _field_ nama, harga, dan deskripsi.
+8. Membuat tombol sebagai child selanjutnya dari `Column`. Tombol ini dibungkus oleh widget `Padding` dan `Align`. Pop-up akan muncul jika tombol ditekan. Pesan yang muncul pada pop-up adalah bentuk konfirmasi dari input yang telah dimasukkan.
+
+### Memunculkan Data
+1. Menambahkan fungsi `showDialog()` pada bagian `onPressed()` dan memunculkan widet `AlertDialog` pada fungsi tersebut, serta fungsi _reset_ form.
+
+### Menambahkan Fitur Navigasi pada Tombol
+1. Pada menu.dart, di widget `ShopItem` dimodifikasi agar dapat melakukan navigasi ke _route_ lain. Disinilah `Navigator.push()` dan `Navigator.pop()` digunakan.
+
+### Refactoring File
+1. Membuat `shoplist_form.dart` dan memasukkannya ke direktori `screens` yang baru dibuat pada `tropische/lib`. Pindahkan juga `menu.dart` ke direktori ini.
+2. Membuat file `shop_card.dart` pada direktori `widgets`.
+3. Menyesuaikan path import file-file yang dipindahkan ini pada file lain yang menggunakannya.
 
 **End of Tugas 2**
 
