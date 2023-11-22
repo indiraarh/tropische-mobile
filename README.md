@@ -19,6 +19,64 @@ Nama  : Indira Arifia Rahmah
 NPM   : 2206811846
 Kelas : PBP B
 
+# Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?
+Pengambilan data JSON tanpa model (inline) bisa dilakukan. Untuk melakukannya, kita dapat memanfaatkan Fungsi `jsonDecode` yang nantinya mengembalikan objek Map<String, dynamic>, kemudian data diakses seperti map biasa. Namun pengambilan dengan model lebih disarankan karena tipe datatidak diketahui hingga runtime (dynamic), yang membuat kode lebih sulit dibaca dan debug. Selain itu, pengambilan dengan model memungkinkan kita untuk menggunakan fitur-fitur seperti const dan final1, serta menghindari kesalahan penulisan kunci.
+
+# Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.
+CookieRequest adalah sebuah kelas yang digunakan untuk mengirim dan menerima cookie melalui HTTP request di Flutter. Cookie adalah data kecil yang disimpan di browser atau aplikasi klien, yang dapat digunakan untuk menyimpan informasi seperti identitas pengguna, preferensi, atau status sesi.
+
+Instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter karena cookie dapat membantu menjaga konsistensi dan keamanan data antara klien dan server. Misalnya, cookie dapat digunakan untuk mengautentikasi pengguna, mengingat pilihan pengguna, atau menyimpan data keranjang belanja³. Dengan membagikan instance CookieRequest, kita dapat memastikan bahwa semua komponen yang membutuhkan cookie dapat mengaksesnya dengan mudah dan efisien.
+
+# Jelaskan mekanisme pengambilan data dari JSON hingga dapat ditampilkan pada Flutter.
+Untuk melakukan pengambilan data dari JSON hingga dapat ditampilkan pada Flutter, kita perlu melakukan beberapa langkah berikut:
+- Pertama, kita perlu mendapatkan data JSON dari sumber yang diinginkan, misalnya dari API, file lokal, atau string. Kita dapat menggunakan kelas http untuk mengirim permintaan HTTP dan menerima respons berisi data JSON.
+- Kedua, kita perlu mengubah data JSON menjadi objek Dart yang dapat kita gunakan dalam aplikasi kita. Kita dapat menggunakan fungsi jsonDecode dari pustaka dart:convert untuk mengubah string JSON menjadi objek Map<String, dynamic>
+
+# Jelaskan mekanisme autentikasi dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
+Pada Flutter:
+- Input Data Akun:
+  - Pengguna memasukkan data akun seperti nama pengguna dan kata sandi melalui antarmuka pengguna Flutter.
+- Permintaan HTTP ke Endpoint Autentikasi Django:
+  - Flutter membuat permintaan HTTP ke endpoint autentikasi Django untuk memverifikasi kredensial pengguna.
+  - Kita dapat menggunakan paket seperti http untuk membuat permintaan HTTP.
+
+Bagian Django:
+- Handle Permintaan Autentikasi:
+  - Di server Django, buat endpoint untuk menangani permintaan autentikasi.
+  - Menggunakan Django's built-in authenticate dan login untuk memeriksa dan mengotentikasi pengguna.
+- Menggunakan Django REST Framework (Opsional):
+  - Jika Anda menggunakan Django REST Framework, Anda dapat membuat endpoint menggunakan APIView untuk memudahkan pengelolaan autentikasi.
+
+# Sebutkan seluruh widget yang kamu pakai pada tugas ini dan jelaskan fungsinya masing-masing.
+- TextField: Widget ini digunakan untuk memasukkan teks. Dalam tugas ini, TextField digunakan untuk mengumpulkan data username dan password selama proses login dan pendaftaran.
+- SizedBox: Widget ini berfungsi untuk memberikan ruang atau jarak dalam desain antarmuka pengguna. Dalam tugas ini, SizedBox digunakan untuk memberikan jarak antara TextField untuk username dan password.
+- ElevatedButton: Widget ini membuat tombol dengan efek ketinggian saat ditekan. Dalam tugas ini, ElevatedButton digunakan sebagai tombol kirim saat proses login dan pendaftaran untuk mengirim informasi pengguna.
+- TextButton: Widget ini membuat tombol yang berbentuk teks tanpa latar. Dalam tugas ini, TextButton digunakan sebagai tombol untuk pendaftaran, memberikan pengguna pilihan untuk melakukan tindakan dengan menekan teks.
+- ListView.builder: Widget ini digunakan untuk membuat daftar item yang bisa digulir. Dalam tugas ini, ListView.builder digunakan untuk menunjukkan daftar item, memungkinkan pengguna melihat lebih banyak konten daripada yang bisa ditampilkan di layar.
+- Text: Widget ini digunakan untuk menampilkan teks. Dalam tugas ini, Text digunakan untuk menampilkan detail ketika item dari daftar dipilih, memberikan informasi atau detail tambahan tentang item yang terpilih.
+
+# Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step!
+- Menyiapkan halaman login di proyek Flutter dengan membuat app autentikasi Django. Ini termasuk menambahkan autentikasi ke `INSTALLED_APPS` di `settings.py` proyek utama, menginstal `django-cors-headers` menggunakan pip, menambahkan `corsheaders` ke `INSTALLED_APPS`, dan menambahkan `corsheaders.middleware.CorsMiddleware` di `settings.py`.
+- Menambahkan variabel baru di `settings.py`.
+- Membuat fungsi di `views.py` untuk autentikasi dan menyiapkan routing URL di app autentikasi.
+- Menginstal paket yang diperlukan untuk Flutter.
+- Menggunakan paket tersebut dengan memodifikasi widget root di Flutter untuk menyediakan library `CookieRequest` ke semua widget anak menggunakan `Provider`.
+- Membuat file `login.dart` di folder screens Flutter, berisi kode untuk laman login, dan mengubah `home: LoginPage()` di `main.dart`.
+- Membuat model kustom dengan membuat endpoint JSON, kemudian menyalin data JSON ke situs Quicktype.
+- Mengubah pengaturan di Quicktype menjadi nama model `Product`, sumber tipe JSON, dan bahasa ke Dart.
+- Mengimplementasikan pengambilan data dari Django ke Flutter, termasuk menambahkan paket `http`, mengizinkan akses internet di aplikasi Flutter melalui `AndroidManifest.xml`.
+- Mengambil data dari Django dengan membuat file `list_product.dart` di folder `lib/screens` Flutter, menambahkan import library yang diperlukan, dan menulis kode yang diperlukan.
+- Menambahkan halaman `list_product.dart` ke `widgets/left_drawer.dart`.
+- Mengubah fungsi tombol "Lihat Item" agar mengarah ke `ProductPage`.
+- Mengimpor file yang dibutuhkan dan menambahkan `ProductPage` ke `left_drawer.dart` dan `shop_card.dart`.
+- Mengintegrasikan form Flutter dengan layanan Django dengan membuat view baru di `views.py` dengan nama `create_product_flutter` dan menambahkan routing di `urls.py`.
+- Di Flutter, menghubungkan halaman `shoplist_form.dart` dengan `CookieRequest` dan mengubah perintah pada tombol `onPressed()` agar routing ke link Django.
+- Mengimplementasikan fitur logout dengan menambahkan fungsi di `authentication/views.py` dan routing di `urls.py`.
+- Di Flutter, menambahkan request dan import di `lib/widgets/shop_card.dart`, mengubah perintah `onTap` pada widget `Inkwell` menjadi `onTap: () async`, dan menambahkan kode di dalamnya.
+- Untuk melihat detail tiap item, membuat file baru `detail_page.dart` yang menangani detail item. Di `list_product.dart`, menambahkan kode agar nama item dapat diklik dan akan membuka `detail_page.dart` untuk menampilkan detail per item.
+
+**End of Tugas 9**
+
 # Perbedaan Antara `Navigator.push()` dan `Navigator.pushReplacement()` dan Contoh Penggunaanya
 `Navigator.push()` dan `Navigator.pushReplacement()` adalah dua metode yang digunakan untuk menavigasi antara layar (atau rute) yang berbeda dalam aplikasi Flutter. Perbedaan utama antara keduanya adalah:
 
@@ -158,7 +216,7 @@ Untuk menerapkan clean architecture pada aplikasi Flutter, berikut adalah langka
 2. Membuat file `shop_card.dart` pada direktori `widgets`.
 3. Menyesuaikan path import file-file yang dipindahkan ini pada file lain yang menggunakannya.
 
-**End of Tugas 2**
+**End of Tugas 8**
 
 # Perbedaan Utama Antara Stateless dan Stateful Widget dalam Konteks Pengembangan Aplikasi Flutter
 - _Stateless widget_ adalah _widget_ yang tidak memiliki keadaan (_state_) yang dapat berubah, sedangkan _stateful widget_ adalah _widget_ yang memiliki keadaan (_state_) yang dapat berubah. Keadaan (_state_) adalah kumpulan nilai atau informasi yang menentukan tampilan dan perilaku _widget_.
