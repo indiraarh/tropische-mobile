@@ -34,18 +34,18 @@ Untuk melakukan pengambilan data dari JSON hingga dapat ditampilkan pada Flutter
 
 # Jelaskan mekanisme autentikasi dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
 Pada Flutter:
-- Input Data Akun:
-  - Pengguna memasukkan data akun seperti nama pengguna dan kata sandi melalui antarmuka pengguna Flutter.
-- Permintaan HTTP ke Endpoint Autentikasi Django:
-  - Flutter membuat permintaan HTTP ke endpoint autentikasi Django untuk memverifikasi kredensial pengguna.
-  - Kita dapat menggunakan paket seperti http untuk membuat permintaan HTTP.
+- Memasukkan Data Akun:
+  - Pengguna memasukkan informasi akun seperti username dan password melalui tampilan antarmuka Flutter.
+- Mengirim Permintaan HTTP ke Endpoint Autentikasi Django:
+  - Flutter mengirimkan permintaan HTTP ke endpoint autentikasi yang ada di Django untuk memvalidasi kredensial pengguna.
+  - Untuk mengirim permintaan HTTP, Flutter bisa memanfaatkan paket seperti `http`.
 
-Bagian Django:
-- Handle Permintaan Autentikasi:
-  - Di server Django, buat endpoint untuk menangani permintaan autentikasi.
-  - Menggunakan Django's built-in authenticate dan login untuk memeriksa dan mengotentikasi pengguna.
-- Menggunakan Django REST Framework (Opsional):
-  - Jika Anda menggunakan Django REST Framework, Anda dapat membuat endpoint menggunakan APIView untuk memudahkan pengelolaan autentikasi.
+Pada Django:
+- Menangani Permintaan Autentikasi:
+  - Server Django memiliki endpoint khusus untuk menerima dan menangani permintaan autentikasi.
+  - Django menggunakan fungsi bawaan seperti `authenticate` dan `login` untuk memverifikasi dan mengotentikasi pengguna.
+- Opsi Django REST Framework:
+  - Apabila menggunakan Django REST Framework, endpoint dapat dibuat dengan menggunakan `APIView`, yang mempermudah dalam mengatur proses autentikasi.
 
 # Sebutkan seluruh widget yang kamu pakai pada tugas ini dan jelaskan fungsinya masing-masing.
 - TextField: Widget ini digunakan untuk memasukkan teks. Dalam tugas ini, TextField digunakan untuk mengumpulkan data username dan password selama proses login dan pendaftaran.
